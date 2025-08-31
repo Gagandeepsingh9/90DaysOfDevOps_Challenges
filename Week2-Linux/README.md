@@ -1,6 +1,6 @@
 # Week 2: Linux System Administration & Automation
 
-This repository contains all my work for Week 2 of the #90DaysOfDevOps challenge. The focus was on foundational Linux system administration skills, including user management, log analysis, volume management, and automation with Bash scripting. All tasks were executed and verified on an Ubuntu server.
+This directory contains all my work for Week 2 of the #90DaysOfDevOps challenge. The project's goal was to simulate managing a **Linux-based production server**, focusing on real-world tasks like user management, log analysis, volume management, and automation. All tasks were executed and verified on an Ubuntu server.
 
 ## Table of Contents
 1.  [Task 1: User & Group Management](#task-1-user--group-management)
