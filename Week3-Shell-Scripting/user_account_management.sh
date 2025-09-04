@@ -10,7 +10,7 @@ function create_user {
 read -p "ENTER NEW USERNAME: " uname
 
 #Checking if this user already exists using grep count before creating!
-count=$(grep -ic $uname /etc/passwd)
+count=$(grep -wc $uname /etc/passwd) # Here -w is for exact word match
 
 #Now if the count is zero it means that user doesnot exists 
 if [ $count == 0 ];
@@ -31,7 +31,7 @@ function delete_user {
 read -p "ENTER USERNAME YOU WANT TO DELETE: " udelete
 
 #Checking if this user exists using grep count before deleting!
-counter=$(grep -ic $udelete /etc/passwd)
+counter=$(grep -wc $udelete /etc/passwd)
 
 if [ $counter == 0 ];
 then
@@ -49,7 +49,7 @@ function reset_password {
 read -p "ENTER USERNAME YOU WANT TO RESET THE PASSWORD FOR: " userpreset
 
 #Checking if this user exists using grep count before reseting the password!
-check=$(grep -ic $userpreset /etc/passwd)
+check=$(grep -wc $userpreset /etc/passwd)
 
 if [ $check == 0 ];
 then
@@ -75,7 +75,8 @@ do
 		d) delete_user ;;
 		r) reset_password ;;
 		l) list_users ;;
-		*) echo "INVALID OPTION, TRY AGAIN!" ;;  
+		*) echo "INVALID OPTION, TRY AGAIN!" 
+			exit ;;  
 	esac
 done
 
