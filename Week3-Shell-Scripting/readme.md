@@ -27,6 +27,7 @@ I created a script named `user_account_management.sh` that can create, delete, r
 
 # To list all real users
 ./user_account_management.sh -l
+```
 
 The full script can be found here: [user_account_management.sh](user_account_management.sh).
 
@@ -50,6 +51,7 @@ The script takes three arguments: the destination path for local backups, the so
 
 # Example:
 ./backup_with_rotation.sh /home/ubuntu/backups /home/ubuntu/project-files my-secure-backup-bucket
+```
 
 The full script can be found here: [backup_with_rotation.sh](backup_with_rotation.sh).
 
