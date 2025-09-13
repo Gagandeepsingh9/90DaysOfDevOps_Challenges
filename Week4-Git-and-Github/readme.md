@@ -12,7 +12,7 @@ All the hands-on work for this challenge was performed in a fork of the official
 #### 1. The Standard Contribution Workflow (Pull Requests)
 I practiced the full, real-world cycle of contributing to a project: I forked the main repository, cloned my fork, created a dedicated `feature-update` branch for my changes, and submitted a Pull Request to have my work reviewed and merged. I finished by syncing my local `master` branch with the updated remote.
 
-*   **Bonus - SSH Authentication:** As part of this workflow, I also completed the bonus task of setting up and using SSH keys. My screenshots show the process of generating an `ed25519` key pair and switching my remote URL from HTTPS to the more secure SSH protocol for pushing changes.
+*   **Bonus - Upgrading to SSH Authentication:** As part of the challenge, I also focused on professional authentication methods. While HTTPS with a Personal Access Token (PAT) works, I set up the more secure and standard SSH method. This works with a key pair: the private key is kept securely on my local machine, while the public key is added to my GitHub account settings.
 
 ![My Merged Pull Request](screenshots/pr-workflow-merged.png)
 
@@ -33,8 +33,8 @@ I practiced using `git stash` to save uncommitted changes when I needed to switc
 
 *   `git stash`: Used to save my changes and clean the working directory.
 *   `git stash list`: Used to view all saved stashes.
-*   `git stash apply`: I demonstrated that this command re-applies the changes but **keeps the stash in the list** for potential reuse.
-*   `git stash pop`: I then demonstrated that this command re-applies the changes and **removes them from the stash list**, which is the most common use case.
+*   `git stash apply`: This command re-applies the changes but **keeps the stash in the list** for potential reuse.
+*   `git stash pop`: This command re-applies the changes and **removes them from the stash list**, which is the most common use case.
 
 ![Using Git Stash to Manage Unfinished Work](screenshots/stash-workflow.png)
 
