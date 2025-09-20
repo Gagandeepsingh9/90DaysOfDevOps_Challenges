@@ -14,8 +14,6 @@ All the hands-on work, including the `Dockerfile` and `docker-compose.yml`, was 
 #### 1. Containerizing a Java Application
 My first step was to write a `Dockerfile` to package the Java chat app into an image. I used a Maven base image to build the app from its source code, which created a self-contained image ready for distribution and use.
 
-**View my `Dockerfile` here:** [**Dockerfile**](https://github.com/Gagandeepsingh9/ChatApp/blob/week5-docker/Dockerfile)
-
 ![Initial Dockerfile for the Java Application](screenshots/docker-file.png)
 
 #### 2. Running a Multi-Container App with Docker Compose
@@ -37,6 +35,8 @@ The first image I built was **757MB**, which is too big for a real-world applica
 *   **Stage 2 ("The Runner"):** Used a tiny, secure `distroless` image and only copied the final `.jar` file from the builder.
 
 This was a big success. The new image was only **252MB**, a **66% reduction** in size. This makes it faster and more secure.
+
+**View my `Multi-Stage Dockerfile` here:** [**Dockerfile**](https://github.com/Gagandeepsingh9/ChatApp/blob/week5-docker/Dockerfile)
 
 ![Multi-Stage Build Optimization](screenshots/multi-stage-build.png)
 
