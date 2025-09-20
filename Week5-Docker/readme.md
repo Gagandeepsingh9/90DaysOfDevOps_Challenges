@@ -1,6 +1,6 @@
 # Week 5: Building a Containerized Application with Docker
 
-This directory contains my project report for Week 5 of the #90DaysOfDevOps challenge. This week was a deep dive into Docker. I took a real-world chat application, containerized it, and took it through a full lifecycle of optimization, orchestration, and security scanning.
+This directory contains my project report for Week 5 of the #90DaysOfDevOps challenge. This week was a deep dive into Docker. I took a real-world chat application,**originally created by [Goldencat98](https://github.com/Goldencat98)**, and took it through a full lifecycle of containerization,optimization, orchestration, and security scanning.
 
 All the hands-on work, including the `Dockerfile` and `docker-compose.yml`, was done on a dedicated branch in a fork of the original application repository.
 
