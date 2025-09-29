@@ -49,7 +49,7 @@ As a result, my final `Jenkinsfile` is incredibly clean and readable. It describ
 
 ![Shared Library Architecture](screenshots/jenkins-shared-library.png) 
 
-(screenshots/jenkins-shared-library1.png)
+![Shared Library Architecture1](screenshots/jenkins-shared-library1.png)
 
 #### 5. Automated Feedback Loops (Webhooks & Notifications)
 To create a true Continuous Integration system, I configured two key feedback mechanisms:
