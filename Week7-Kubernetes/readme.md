@@ -17,7 +17,7 @@ I started by building my own local, multi-node Kubernetes cluster using **Kind**
 Crucially, I made two key architectural decisions in this file to prepare for a production-style deployment:
 1.  **`disableDefaultCNI: true`**: This was done so I could install Calico later, a CNI that supports `NetworkPolicy`.
 2.  **`extraPortMappings`**: I opened ports 80 and 443 on the control-plane node to allow traffic to reach the NGINX Ingress Controller.
-*   **View my Kind cluster configuration:** [**kind-cluster-config.yml**](https://github.com/Gagandeepsingh9/ChatApp/blob/week7-k8s/kind-cluster-config.yml)
+*   **View my Kind cluster configuration:** [**kind-cluster-config**](https://github.com/Gagandeepsingh9/ChatApp/blob/week7-k8s/kind-cluster-config)
 
 #### 2. Separating Configuration from Code: `ConfigMap` & `Secret`
 To follow best practices, I externalized all application configuration.
@@ -30,7 +30,7 @@ These were then securely injected into the application and database pods as envi
 To properly manage the database, I used a **`StatefulSet`**, which is the professional standard for stateful applications on Kubernetes. This provides stable pod identity and, most importantly, stable storage.
 
 I used `volumeClaimTemplates` to ensure that each database pod automatically gets its own `PersistentVolumeClaim`, which then binds to a `PersistentVolume` I defined. This guarantees that the database always reconnects to its own specific data, preventing data loss. I also created a **Headless Service** (`clusterIP: None`) to give the pods a stable network identity to enable direct, one-to-one communication with individual pods.
-*   **View manifests:** [**StatefulSet**](https://github.com/Gagandeepsingh9/ChatApp/blob/week7-k8s/k8s-mysql/statefulsets.yaml) | [**Headless Service**](https://github.com/Gagandeepsingh9/ChatApp/blob/week7-k8s/k8s-mysql/service_mysql.yml) | [**PV & PVC**](https://github.com/Gagandeepsingh9/ChatApp/blob/week7-k8s/k8s-mysql/persistent_Volume.yml)
+*   **View manifests:** [**StatefulSet**](https://github.com/Gagandeepsingh9/ChatApp/blob/week7-k8s/k8s-mysql/statefulsets.yml) | [**Headless Service**](https://github.com/Gagandeepsingh9/ChatApp/blob/week7-k8s/k8s-mysql/service_mysql.yml) | [**PV & PVC**](https://github.com/Gagandeepsingh9/ChatApp/blob/week7-k8s/k8s-mysql/persistent_Volume.yml)
 
 ![StatefulSet and Persistent Volume Claim](screenshots/statefulset-and-pvc.png)
 
@@ -55,7 +55,7 @@ This was the most complex and rewarding part of the project. I set up a full Ing
     *   **The Problem:** I discovered a major bug: when I logged in, the Ingress load balancer would sometimes send my next request to the *other* pod, which wasn't aware of my login session, breaking the user experience.
     *   **The Diagnosis:** I identified this as a "session affinity" problem.
     *   **The Solution:** I fixed it by adding the `nginx.ingress.kubernetes.io/affinity: "cookie"` annotation to my `Ingress` manifest. This clever fix ensures that a user is always "stuck" to the same pod for their entire session, providing a smooth experience. 
-*   **View my Ingress manifest:** [**ingress.yaml**](https://github.com/Gagandeepsingh9/ChatApp/blob/week7-k8s/k8s-chatapp/ingress.yml)
+*   **View my Ingress manifest:** [**ingress.yml**](https://github.com/Gagandeepsingh9/ChatApp/blob/week7-k8s/k8s-chatapp/ingress.yml)
 
 ![Ingress and Session Affinity Fix](screenshots/ingress-setup-1.png)
 ![Chatapp](screenshots/ingress-setup-2.png)
@@ -65,6 +65,8 @@ I implemented security at multiple layers.
 *   **Network Policy (Internal Firewall):** I created a Kubernetes `NetworkPolicy` that acts as a firewall. It ensures that **only** the ChatApp pods are allowed to connect to the MySQL database pods on port 3306.
 *   **RBAC:** I configured a `ServiceAccount`, `Role`, and `RoleBinding` to give my application specific, limited permissions within the cluster, following the principle of least privilege.
 *   **View manifests:** [**Network Policy**](https://github.com/Gagandeepsingh9/ChatApp/blob/week7-k8s/k8s-mysql/network_policies.yml) | [**RBAC**](https://github.com/Gagandeepsingh9/ChatApp/blob/week7-k8s/k8s-chatapp/role.yml)
+
+![Network Policy & RBAC](screenshots/rbac-network-policies.png)
 
 ---
 ### My Key Takeaway
