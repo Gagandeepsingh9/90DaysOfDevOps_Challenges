@@ -67,7 +67,3 @@ I implemented security at multiple layers.
 *   **View manifests:** [**Network Policy**](https://github.com/Gagandeepsingh9/ChatApp/blob/week7-k8s/k8s-mysql/network_policies.yml) | [**RBAC**](https://github.com/Gagandeepsingh9/ChatApp/blob/week7-k8s/k8s-chatapp/role.yml)
 
 ![Network Policy & RBAC](screenshots/rbac-network-policies.png)
-
----
-### My Key Takeaway
-This week was an incredible, deep dive into what it truly means to orchestrate an application. The real learning wasn't just in writing the YAML files, but in troubleshooting real-world problems. 
