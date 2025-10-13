@@ -19,6 +19,8 @@ Crucially, I made two key architectural decisions in this file to prepare for a 
 2.  **`extraPortMappings`**: I opened ports 80 and 443 on the control-plane node to allow traffic to reach the NGINX Ingress Controller.
 *   **View my Kind cluster configuration:** [**kind-cluster-config**](https://github.com/Gagandeepsingh9/ChatApp/blob/week7-k8s/kind-cluster-config)
 
+![KIND Cluster Config](screenshots/kind-cluster-config.png)
+
 #### 2. Separating Configuration from Code: `ConfigMap` & `Secret`
 To follow best practices, I externalized all application configuration.
 *   **`ConfigMap`**: I created a `ConfigMap` to store non-sensitive data, such as the `mysql_user` and `mysql_database` names.
